@@ -13,4 +13,4 @@ const Sidebar = () => {
   );
 };
 
-export default SideBar;
+export default Sidebar;
