@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import ProductCard from "../components/ProductCard";
+import ProductCard from "../components/productCard";
 import Sidebar from "../components/SideBar";
 
 const ProductList = () => {
