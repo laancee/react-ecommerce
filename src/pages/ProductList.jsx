@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import ProductCard from "../components/productCard";
-import Sidebar from "../components/SideBar";
+import Sidebar from "../components/Sidebar";
 
 const ProductList = () => {
   // Store products from backend

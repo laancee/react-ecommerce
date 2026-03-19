@@ -3,7 +3,7 @@ import React from 'react';
 
 // NOTE: Make sure these paths & casing match your actual files:
 import ProductCard from '../components/productCard';
-import SideBar from './components/SideBar';
+import Sidebar from '../components/Sidebar';
 
 import HeroCarousel from '../components/HeroCarousel';
 
