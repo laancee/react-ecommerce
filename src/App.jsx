@@ -11,7 +11,7 @@ import ProductList from "./pages/ProductList";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Policies from "./pages/Policies";
-import Cart from "./pages/Cart";
+import Cart from "./pages/cart";
 import Checkout from './pages/Checkout';
 
 const App = () => {
