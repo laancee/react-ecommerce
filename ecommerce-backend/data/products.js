@@ -1,49 +1,73 @@
 const products = [
   {
     id: 1,
-
-    // Product name displayed in the card title
-    name: "Running Shoes",
-
-    // Product image shown at the top
-    image: "http://localhost:5000/images/product2.jpg",
-
-    // Current discounted price
-    price: 1200,
-
-    // Old price (will show as crossed out)
-    oldPrice: 1500,
-
-    // Rating out of 5 stars
+    name: "Gaming Laptop",
+    price: 1499,
+    oldPrice: 2000,
+    discount: 25,
     rating: 4,
-
-    // Discount badge percentage (optional)
-    discount: 20,
-
-    // Product category
-    category: "Clothing",
+    category: "Electronics",
+    image: "http://localhost:5000/images/product2.jpg",
   },
-
   {
     id: 2,
-    name: "Smart Watch",
-    image: "http://localhost:4173/images/product1.png",
-    price: 2500,
-    oldPrice: 3000,
+    name: "Wireless Headset",
+    price: 799,
+    oldPrice: 1000,
+    discount: 20,
     rating: 5,
-    discount: 15,
     category: "Electronics",
+    image: "http://localhost:5000/images/product1.png",
   },
-
   {
     id: 3,
-    name: "Backpack",
-    image: "http://localhost:4173/images/product3.jpg",
-    price: 900,
-    oldPrice: 1200,
-    rating: 3,
-    discount: 10,
+    name: "Mechanical Keyboard",
+    price: 599,
+    oldPrice: 750,
+    discount: 20,
+    rating: 4,
     category: "Accessories",
+    image: "http://localhost:5000/images/product3.jpg",
+  },
+  {
+    id: 4,
+    name: "Gaming Mouse",
+    price: 399,
+    oldPrice: 500,
+    discount: 20,
+    rating: 4,
+    category: "Accessories",
+    image: "http://localhost:5000/images/product5.jpg",
+  },
+  {
+    id: 5,
+    name: "27” Gaming Monitor",
+    price: 1899,
+    oldPrice: 2200,
+    discount: 14,
+    rating: 5,
+    category: "Accessories",
+    image: "http://localhost:5000/images/product4.jpg",
+  },
+  {
+    id: 6,
+    name: "RGB Speaker",
+    price: 1699,
+    oldPrice: 2100,
+    discount: 19,
+    rating: 5,
+    category: "Electronics",
+    image: "http://localhost:5000/images/product6.jpg",
+  },
+  {
+    id: 7,
+    name: "USB-C Hub",
+    price: 699,
+    oldPrice: 900,
+    discount: 22,
+    rating: 4,
+    category: "Accessories",
+    image: "http://localhost:5000/images/product7.jpg",
   },
 ];
 

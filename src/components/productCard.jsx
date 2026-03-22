@@ -1,19 +1,19 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
 
 const ProductCard = ({ product }) => {
-  // Get addToCart from global context
   const { addToCart } = useContext(CartContext);
+  const { wishlist, toggleWishlist } = useWishlist();
+
+  const isFav = wishlist.some((item) => item.id === product.id);
 
   return (
-    <div className="card h-100 shadow-sm">
-      {/* Image wrapper for zoom and badge */}
+    <div className="card h-100 shadow-sm product-card">
       <div className="product-img-wrapper">
-        {/* Sale badge */}
         {product.discount && (
           <div className="sale-badge">-{product.discount}%</div>
         )}
-
         <img
           src={product.image}
           className="card-img-top product-img"
@@ -22,31 +22,39 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div className="card-body d-flex flex-column">
-        <h6 className="card-title">{product.name}</h6>
-
-        {/* Star rating */}
-        <div className="mb-2 text-warning">
-          {[...Array(5)].map((star, index) => (
+        <div className="d-flex justify-content-between">
+          <h6>{product.name}</h6>
+          <button
+            className="btn btn-sm border-0"
+            onClick={() => toggleWishlist(product)}
+          >
             <i
-              key={index}
-              className={`fa-star ${index < product.rating ? "fas" : "far"} fa`}
+              className={`fa${isFav ? "s" : "r"} fa-heart text-danger`}
+            ></i>
+          </button>
+        </div>
+
+        <div className="mb-2 text-warning">
+          {[...Array(5)].map((_, i) => (
+            <i
+              key={i}
+              className={`fa-star ${
+                i < product.rating ? "fas" : "far"
+              } fa`}
             ></i>
           ))}
         </div>
 
-        {/* Price section */}
         <div className="mb-2">
-          <span className="text-muted text-decoration-line-through me-2">
-            ₱{product.oldPrice}
-          </span>
-          <span className="fw-bold text-danger">₱{product.price}</span>
+          <del className="me-2">₱{product.oldPrice}</del>
+          <strong className="text-danger">₱{product.price}</strong>
         </div>
 
         <button
           className="btn btn-primary mt-auto"
           onClick={() => addToCart(product)}
         >
-          <i className="fas fa-shopping-cart me-2"></i>
+          <i className="fa fa-shopping-cart me-2"></i>
           Add to Cart
         </button>
       </div>

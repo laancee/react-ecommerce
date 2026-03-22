@@ -1,15 +1,34 @@
-// src/components/Sidebar.jsx
-const Sidebar = () => {
+const Sidebar = ({ setCategory }) => {
   return (
-    <aside className="bg-light p-3">
-      <h5>Categories</h5>
-      <ul className="list-group">
-        <li className="list-group-item">Electronics</li>
-        <li className="list-group-item">Clothing</li>
-        <li className="list-group-item">Books</li>
-        <li className="list-group-item">Accessories</li>
-      </ul>
-    </aside>
+    <div className="list-group shadow-sm">
+      <button
+        className="list-group-item fw-bold"
+        disabled
+      >
+        Categories
+      </button>
+
+      <button
+        className="list-group-item list-group-item-action"
+        onClick={() => setCategory("All")}
+      >
+        All
+      </button>
+
+      <button
+        className="list-group-item list-group-item-action"
+        onClick={() => setCategory("Electronics")}
+      >
+        Electronics
+      </button>
+
+      <button
+        className="list-group-item list-group-item-action"
+        onClick={() => setCategory("Accessories")}
+      >
+        Accessories
+      </button>
+    </div>
   );
 };
 

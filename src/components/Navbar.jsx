@@ -1,84 +1,81 @@
-// src/components/Navbar.jsx
-import React, { useContext, useMemo } from 'react';
-import { NavLink, Link } from 'react-router-dom';
-
-// ⬇️ Import the CartContext so we can read cart items
-import { CartContext } from '../context/CartContext';
+import React, { useContext, useMemo } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import { useWishlist } from "../context/WishlistContext";
+import { useTheme } from "../context/ThemeContext";
 
 const Navbar = () => {
-  // ⬇️ Access cart array from global context
   const { cart } = useContext(CartContext);
+  const { wishlist } = useWishlist();
+  const { dark, setDark } = useTheme();
 
-  // ⬇️ Derive total items for the badge (sum of qty)
-  const totalItems = useMemo(
+  const totalCartItems = useMemo(
     () => cart.reduce((sum, item) => sum + item.qty, 0),
     [cart]
   );
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-3">
+    <nav
+      className={`navbar navbar-expand-lg mb-3 ${
+        dark ? "navbar-dark bg-dark" : "navbar-light bg-light"
+      }`}
+    >
       <div className="container">
-        <NavLink className="navbar-brand" to="/">MyStore</NavLink>
+        <NavLink className="navbar-brand fw-bold" to="/">
+          GameGrid
+        </NavLink>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#mainNavbar"
-          aria-controls="mainNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+        <button className="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav">
           <span className="navbar-toggler-icon" />
         </button>
 
-        <div className="collapse navbar-collapse" id="mainNavbar">
-          <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
+        <div className="collapse navbar-collapse" id="mainNav">
+          <ul className="navbar-nav ms-auto align-items-lg-center">
             <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/">
-                Home
-              </NavLink>
+              <NavLink className="nav-link" to="/">Home</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/products">Products</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/about">About</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/contact">Contact</NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/policies">Policies</NavLink>
             </li>
 
-            <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/products">
-                Products
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/about">
-                About
-              </NavLink>
-            </li>
-
-            <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/contact">
-                Contact
-              </NavLink>
-            </li>
-
-            {/* New: Policies */}
-            <li className="nav-item">
-              <NavLink className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} to="/policies">
-                Policies
-              </NavLink>
-            </li>
-
-            {/* 🔥 New: Cart icon with badge (from your screenshot’s idea) */}
-            <li className="nav-item ms-lg-2">
-              {/* You can use Link or NavLink; Link is fine here */}
-              <Link className="nav-link position-relative" to="/cart" aria-label="Cart">
-                <i className="fa fa-shopping-cart"></i>
-                {totalItems > 0 && (
-                  <span
-                    className="badge bg-danger ms-1 position-absolute top-0 start-100 translate-middle"
-                    style={{ fontSize: '0.7rem' }}
-                  >
-                    {totalItems}
+            {/* Wishlist */}
+            <li className="nav-item ms-lg-3">
+              <Link className="nav-link position-relative" to="/wishlist">
+                <i className="fa fa-heart"></i>
+                {wishlist.length > 0 && (
+                  <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                    {wishlist.length}
                   </span>
                 )}
               </Link>
+            </li>
+
+            {/* Cart */}
+            <li className="nav-item ms-lg-3">
+              <Link className="nav-link position-relative" to="/cart">
+                <i className="fa fa-shopping-cart"></i>
+                {totalCartItems > 0 && (
+                  <span className="badge bg-danger position-absolute top-0 start-100 translate-middle">
+                    {totalCartItems}
+                  </span>
+                )}
+              </Link>
+            </li>
+
+            {/* Theme */}
+            <li className="nav-item ms-lg-4">
+              <button onClick={() => setDark(!dark)} className="btn btn-outline-secondary btn-sm">
+                {dark ? "☀ Light" : "🌙 Dark"}
+              </button>
             </li>
           </ul>
         </div>
